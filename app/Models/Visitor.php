@@ -32,3 +32,8 @@ class Visitor extends Model
     #[Cast("bool")]
     public bool $notification;
 }
+<?php
+
+namespace App\Models;
+
+cl
