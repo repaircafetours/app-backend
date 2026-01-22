@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Visitor;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -11,18 +12,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('visitors', function (Blueprint $table) {
+        Schema::create('items', function (Blueprint $table) {
             $table->id();
-            $table->string('email');
-            $table->string('title');
+            $table->float('weight');
+            $table->integer('age');
             $table->string('name');
-            $table->string('surname');
-            $table->string('zip_code');
-            $table->string('city');
-            $table->string('phone_number');
-            $table->string('source');
-            $table->boolean('notification');
+            $table->boolean('is_electric');
+            $table->string('brand');
             $table->schemalessAttributes("extra_attributes");
+
+            $table->foreignIdFor(Visitor::class)
+                ->constrained()
+                ->nullOnDelete()
+                ->cascadeOnUpdate();
         });
     }
 
@@ -31,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('visitors');
+        Schema::dropIfExists('items');
     }
 };

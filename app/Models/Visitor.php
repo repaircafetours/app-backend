@@ -3,22 +3,17 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use WendellAdriel\Lift\Lift;
 
 use App\Traits\HasSchemalessAttributes;
 use WendellAdriel\Lift\Attributes\Cast;
-use WendellAdriel\Lift\Attributes\PrimaryKey;
 
+#[HasMany(Item::class)]
 class Visitor extends Model
 {
 
     use HasSchemalessAttributes, Lift;
-    //
-    protected $primaryKey = "email";
-    protected $keyType = "string";
-    public $incrementing = false;
-
-    #[PrimaryKey(type: "string",  incrementing: false)]
     public string $email;
 
     public string $title;
@@ -31,4 +26,6 @@ class Visitor extends Model
 
     #[Cast("bool")]
     public bool $notification;
+
+    public array $extra_attributes = [];
 }
