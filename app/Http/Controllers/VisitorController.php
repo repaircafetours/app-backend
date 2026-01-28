@@ -42,7 +42,7 @@ class VisitorController extends Controller
     {
         //
         $visitor->title = $request->title;
-        $visitor->name = $request->name
+        $visitor->name = $request->name;
     }
 
     /**
