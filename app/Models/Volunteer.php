@@ -3,14 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use WendellAdriel\Lift\Attributes\Relations\BelongsToMany;
 
-#[HasMany(Speciality::class)]
-#[HasMany(Role::class)]
+#[BelongsToMany(Speciality::class, pivotModel:'volunteer_speciality')]
+#[BelongsToMany(Role::class, pivotModel:'volunteer_roles')]
 class Volunteer extends Model
 {
     public int $idHumHub;
     public string $regime;
-
 
 }

@@ -1,7 +1,7 @@
 <?php
 
 use App\Models\Role;
-use App\Models\Speciality;
+use App\Models\Volunteer;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,19 +13,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('volunteers', function (Blueprint $table) {
-            $table->id();
-            $table->integer('idHumHub');
-            $table->string('regime');
+        Schema::create('volunteer_roles', function (Blueprint $table) {
+            $table->foreignIdFor(Volunteer::class)
+                    ->constrained()
+                    ->cascadeOnDelete()
+                    ->cascadeOnUpdate();
             $table->foreignIdFor(Role::class)
                     ->constrained()
-                    ->nullOnDelete()
+                    ->cascadeOnDelete()
                     ->cascadeOnUpdate();
-            $table->foreignIdFor(Speciality::class)
-                    ->constrained()
-                    ->nullOnDelete()
-                    ->cascadeOnUpdate();
-
+            $table->primary(['volunteer_id', 'role_id']);
         });
     }
 
@@ -34,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('volunteers');
+        Schema::dropIfExists('volunteer_roles');
     }
 };
