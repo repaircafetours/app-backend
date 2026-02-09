@@ -11,18 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('visitors', function (Blueprint $table) {
+        Schema::create('events', function (Blueprint $table) {
             $table->id();
-            $table->string('email');
-            $table->string('title');
-            $table->string('name');
-            $table->string('surname');
-            $table->string('zip_code');
+            $table->string('date');
             $table->string('city');
-            $table->string('phone_number');
-            $table->string('source');
-            $table->boolean('notification');
+            $table->string('zip_code');
+            $table->string('address');
             $table->schemalessAttributes("extra_attributes");
+            $table->timestamps();
         });
     }
 
@@ -31,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('visitors');
+        Schema::dropIfExists('events');
     }
 };

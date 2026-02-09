@@ -41,8 +41,15 @@ class VisitorController extends Controller
     public function update(Request $request, Visitor $visitor)
     {
         //
-        $visitor->title = $request->title;
-        $visitor->name = $request->name;
+        $visitor->title = $request->input("title", $visitor->title);
+        $visitor->name = $request->input("name", $visitor->name);
+        $visitor->surname = $request->input("surname", $visitor->surname);
+        $visitor->zip_code = $request->input("zip_code", $visitor->zip_code);
+        $visitor->city = $request->input("city", $visitor->city);
+        $visitor->phone_number = $request->input("city", $visitor->phone_number);
+        $visitor->source = $request->input("source", $visitor->source);
+        $visitor->notification = $request->input("notification", $visitor->notification);
+        $visitor->save();
     }
 
     /**
@@ -50,6 +57,6 @@ class VisitorController extends Controller
      */
     public function destroy(Visitor $visitor)
     {
-        //
+        $visitor->delete();
     }
 }
