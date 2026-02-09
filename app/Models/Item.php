@@ -5,10 +5,12 @@ namespace App\Models;
 use App\Traits\HasSchemalessAttributes;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use WendellAdriel\Lift\Lift;
 
 #[BelongsTo(Visitor::class)]
+/**
+ * @property Visitor $visitor
+ */
 class Item extends Model
 {
 
@@ -22,4 +24,5 @@ use HasSchemalessAttributes, Lift;
     public string $brand;
 
     public array $extra_attributes = [];
+
 }

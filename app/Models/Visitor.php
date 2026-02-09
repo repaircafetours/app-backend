@@ -8,8 +8,15 @@ use WendellAdriel\Lift\Lift;
 
 use App\Traits\HasSchemalessAttributes;
 use WendellAdriel\Lift\Attributes\Cast;
+use WendellAdriel\Lift\Attributes\Relations\HasManyThrough as RelationsHasManyThrough;
+use WendellAdriel\Lift\Attributes\Rules;
 
 #[HasMany(Item::class)]
+#[RelationsHasManyThrough(Visitor::class, Item::class)]
+/**
+ * @property Item[] $items
+ * @property Visitor[] $visitors
+ */
 class Visitor extends Model
 {
 
@@ -17,6 +24,8 @@ class Visitor extends Model
     public string $email;
 
     public string $title;
+
+    #[Rules(["required"])]
     public string $name;
     public string $surname;
     public string $zip_code;

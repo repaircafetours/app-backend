@@ -22,6 +22,7 @@ return new class extends Migration
             $table->schemalessAttributes("extra_attributes");
 
             $table->foreignIdFor(Visitor::class)
+                ->nullable()
                 ->constrained()
                 ->nullOnDelete()
                 ->cascadeOnUpdate();
