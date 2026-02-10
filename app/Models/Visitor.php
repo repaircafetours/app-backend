@@ -8,11 +8,11 @@ use WendellAdriel\Lift\Lift;
 
 use App\Traits\HasSchemalessAttributes;
 use WendellAdriel\Lift\Attributes\Cast;
-use WendellAdriel\Lift\Attributes\Relations\HasManyThrough as RelationsHasManyThrough;
+use WendellAdriel\Lift\Attributes\Relations\HasManyThrough;
 use WendellAdriel\Lift\Attributes\Rules;
 
 #[HasMany(Item::class)]
-#[RelationsHasManyThrough(Visitor::class, Item::class)]
+#[HasManyThrough(Event::class, Item::class)]
 /**
  * @property Item[] $items
  * @property Visitor[] $visitors

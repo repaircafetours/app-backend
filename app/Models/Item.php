@@ -5,9 +5,11 @@ namespace App\Models;
 use App\Traits\HasSchemalessAttributes;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use WendellAdriel\Lift\Attributes\Relations\BelongsToMany;
 use WendellAdriel\Lift\Lift;
 
 #[BelongsTo(Visitor::class)]
+#[BelongsToMany(Event::class, pivotModel: Appointment::class)]
 /**
  * @property Visitor $visitor
  */
