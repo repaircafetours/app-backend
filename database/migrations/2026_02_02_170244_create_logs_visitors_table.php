@@ -13,7 +13,7 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create("logs_visitors", function (Blueprint $table) {
-            $table->primary(['visitor_id', 'logs_id']);
+            $table->primary(["visitor_id", "logs_id"]);
             $table
                 ->foreignIdFor(Visitor::class)
                 ->constrained()
