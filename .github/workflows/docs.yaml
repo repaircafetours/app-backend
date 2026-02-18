@@ -24,7 +24,7 @@ jobs:
         with:
           repository: https://github.com/repaircafetours/Documentation
           ref: master
-          token: ${{ secrets.DOCS_REPO_TOKEN }
+          token: ${{ secrets.DOCS_REPO_TOKEN }}
           path: target-repo
 
       - name: Copy content to /docs/api
