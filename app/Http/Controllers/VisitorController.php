@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Services\VisitorService;
 use App\Models\Visitor;
 use Illuminate\Http\Request;
+use Spatie\SchemalessAttributes\SchemalessAttributes;
 
 
 class VisitorController extends Controller
@@ -39,6 +40,8 @@ class VisitorController extends Controller
         $visitor->source = $request->input("source");
         $visitor->notification = $request->input("notification", false);
         $visitor->email = $request->input("email");
+        $visitor->castAndSet("extra_attributes", $request->input("extra_attributes", []));
+        // $visitor->extra_attributes = $request->input("extra_attributes");
         $this->visitorService->save($visitor);
     }
 
@@ -64,6 +67,7 @@ class VisitorController extends Controller
         $visitor->source = $request->input("source", $visitor->source);
         $visitor->notification = $request->input("notification", $visitor->notification);
         $visitor->email = $request->input("email", $visitor->email);
+        $visitor->extra_attributes = $request->input("extra_attributes", $visitor->extra_attributes);
         $this->visitorService->save($visitor);
     }
 
