@@ -38,6 +38,7 @@ class VisitorController extends Controller
         $visitor->phone_number = $request->input("phone_number");
         $visitor->source = $request->input("source");
         $visitor->notification = $request->input("notification", false);
+        $visitor->email = $request->input("email");
         $this->visitorService->save($visitor);
     }
 
@@ -62,6 +63,7 @@ class VisitorController extends Controller
         $visitor->phone_number = $request->input("phone_number", $visitor->phone_number);
         $visitor->source = $request->input("source", $visitor->source);
         $visitor->notification = $request->input("notification", $visitor->notification);
+        $visitor->email = $request->input("email", $visitor->email);
         $this->visitorService->save($visitor);
     }
 
