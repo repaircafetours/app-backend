@@ -22,7 +22,7 @@ jobs:
       - name: Checkout target repo
         uses: actions/checkout@v4
         with:
-          repository: https://github.com/repaircafetours/Documentation
+          repository: repaircafetours/Documentation
           ref: master
           token: ${{ secrets.DOCS_REPO_TOKEN }}
           path: target-repo
