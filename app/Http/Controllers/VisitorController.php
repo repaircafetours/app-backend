@@ -9,8 +9,12 @@ use Illuminate\Http\Request;
 
 class VisitorController extends Controller
 {
+    private VisitorService $visitorService;
 
-    private VisitorService $visitorService = app("VisitorService");
+    public function __construct(VisitorService $visitorService)
+    {
+        $this->visitorService = $visitorService;
+    }
 
     /**
      * Display a listing of the resource.
@@ -55,7 +59,7 @@ class VisitorController extends Controller
         $visitor->surname = $request->input("surname", $visitor->surname);
         $visitor->zip_code = $request->input("zip_code", $visitor->zip_code);
         $visitor->city = $request->input("city", $visitor->city);
-        $visitor->phone_number = $request->input("city", $visitor->phone_number);
+        $visitor->phone_number = $request->input("phone_number", $visitor->phone_number);
         $visitor->source = $request->input("source", $visitor->source);
         $visitor->notification = $request->input("notification", $visitor->notification);
         $this->visitorService->save($visitor);

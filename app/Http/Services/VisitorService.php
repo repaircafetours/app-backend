@@ -7,11 +7,13 @@ use App\Http\Services\Logs\VisitorLoggerService;
 
 class VisitorService {
 
-    /**
-     * @var VisitorLoggerService $logger
-     */
-    private $logger = app("VisitorLoggerService");
+    
+    private VisitorLoggerService $logger;
 
+    public function __construct(VisitorLoggerService $logger)
+    {
+        $this->logger = $logger;
+    }
 
     public function save(Visitor $visitor): void {
         $this->logger->log($visitor);
