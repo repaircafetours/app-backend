@@ -30,8 +30,8 @@ class Visitor extends Model
     public string $surname;
     public string $zip_code;
     public string $city;
-    public string $phone_number;
-    public string $source;
+    public ?string $phone_number;
+    public ?string $source;
 
     #[Cast("bool")]
     public bool $notification;

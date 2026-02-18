@@ -22,6 +22,7 @@ class AppServiceProvider extends ServiceProvider
                 $app->make(VisitorLoggerService::class)
             );
         });
+        $this->app->make(VisitorLoggerService::class)->initialize($this->app->make(VisitorService::class));
     }
 
     /**
