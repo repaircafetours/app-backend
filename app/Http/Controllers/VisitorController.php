@@ -69,6 +69,7 @@ class VisitorController extends Controller
         $visitor->email = $request->input("email", $visitor->email);
         $visitor->extra_attributes = $request->input("extra_attributes", $visitor->extra_attributes);
         $this->visitorService->save($visitor);
+        return $visitor;
     }
 
     /**
