@@ -20,7 +20,14 @@ class VisitorService {
         $visitor->save();
     }
 
+    /**
+     * Returns the old version of the current visitor. If it has not already been inserted in
+     * database, returns the same visitor.
+     * @param Visitor $visitor
+     * @return Visitor The databse instance of the requested Visitor, or the same instance if it does not exists
+     */
     public function getFromVisitor(Visitor $visitor): Visitor {
+        if (!$visitor->id) return $visitor;
         return $this->getFromId($visitor->id);
     }
 
