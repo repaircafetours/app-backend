@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\LoggedModel;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use WendellAdriel\Lift\Lift;
@@ -20,7 +21,11 @@ use WendellAdriel\Lift\Attributes\Rules;
 class Visitor extends Model
 {
 
-    use HasSchemalessAttributes, Lift;
+    use HasSchemalessAttributes, Lift, LoggedModel;
+
+    public $timestamps = false;
+
+
     public string $email;
 
     public string $title;
