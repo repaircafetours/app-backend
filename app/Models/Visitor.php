@@ -41,6 +41,7 @@ class Visitor extends Model
     public ?string $phone_number;
     public ?string $source;
 
+    #[Cast("bool")]
     public bool $notification;
     
     #[Cast(SchemalessAttributesCast::class)]
