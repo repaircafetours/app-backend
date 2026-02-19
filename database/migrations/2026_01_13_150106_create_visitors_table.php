@@ -13,14 +13,17 @@ return new class extends Migration
     {
         Schema::create('visitors', function (Blueprint $table) {
             $table->id();
-            $table->string('email');
+            $table->string('email')
+                ->unique();
             $table->string('title');
             $table->string('name');
             $table->string('surname');
             $table->string('zip_code');
             $table->string('city');
-            $table->string('phone_number');
-            $table->string('source');
+            $table->string('phone_number')
+                ->nullable();
+            $table->string('source')
+                ->nullable();
             $table->boolean('notification');
             $table->schemalessAttributes("extra_attributes");
         });

@@ -2,20 +2,27 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Services\VisitorService;
 use App\Models\Visitor;
 use Illuminate\Http\Request;
+use Spatie\SchemalessAttributes\SchemalessAttributes;
 
 
 class VisitorController extends Controller
 {
+    private VisitorService $visitorService;
+
+    public function __construct(VisitorService $visitorService)
+    {
+        $this->visitorService = $visitorService;
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
-
-        return Visitor::all();
+        return $this->visitorService->getAll();
     }
 
     /**
@@ -23,7 +30,19 @@ class VisitorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $visitor = new Visitor();
+        $visitor->title = $request->input("title");
+        $visitor->name = $request->input("name");
+        $visitor->surname = $request->input("surname");
+        $visitor->zip_code = $request->input("zip_code");
+        $visitor->city = $request->input("city");
+        $visitor->phone_number = $request->input("phone_number");
+        $visitor->source = $request->input("source");
+        $visitor->notification = $request->input("notification", false);
+        $visitor->email = $request->input("email");
+        $visitor->castAndSet("extra_attributes", $request->input("extra_attributes", []));
+        // $visitor->extra_attributes = $request->input("extra_attributes");
+        $this->visitorService->save($visitor);
     }
 
     /**
@@ -31,7 +50,6 @@ class VisitorController extends Controller
      */
     public function show(Visitor $visitor)
     {
-        //
         return $visitor;
     }
 
@@ -40,16 +58,18 @@ class VisitorController extends Controller
      */
     public function update(Request $request, Visitor $visitor)
     {
-        //
         $visitor->title = $request->input("title", $visitor->title);
         $visitor->name = $request->input("name", $visitor->name);
         $visitor->surname = $request->input("surname", $visitor->surname);
         $visitor->zip_code = $request->input("zip_code", $visitor->zip_code);
         $visitor->city = $request->input("city", $visitor->city);
-        $visitor->phone_number = $request->input("city", $visitor->phone_number);
+        $visitor->phone_number = $request->input("phone_number", $visitor->phone_number);
         $visitor->source = $request->input("source", $visitor->source);
         $visitor->notification = $request->input("notification", $visitor->notification);
-        $visitor->save();
+        $visitor->email = $request->input("email", $visitor->email);
+        $visitor->extra_attributes = $request->input("extra_attributes", $visitor->extra_attributes);
+        $this->visitorService->save($visitor);
+        return $visitor;
     }
 
     /**
@@ -57,6 +77,6 @@ class VisitorController extends Controller
      */
     public function destroy(Visitor $visitor)
     {
-        $visitor->delete();
+        $this->visitorService->delete($visitor);
     }
 }
