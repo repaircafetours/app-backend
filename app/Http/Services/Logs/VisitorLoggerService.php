@@ -12,7 +12,7 @@ class VisitorLoggerService {
 
     /**
      * An initializer function that should only be called once within the service provider.
-     * 
+     *
      * We use this method to resolve the circular dependency between VisitorService and VisitorLoggerService.
      * @param VisitorService $service
      * @return void

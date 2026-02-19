@@ -7,7 +7,7 @@ use App\Http\Services\Logs\VisitorLoggerService;
 
 class VisitorService {
 
-    
+
     private VisitorLoggerService $logger;
 
     public function __construct(VisitorLoggerService $logger)

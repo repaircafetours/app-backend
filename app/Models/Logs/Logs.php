@@ -6,6 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 #[MorphTo("logable")]
-class Logs extends Model
-{
+class Logs extends Model {
+
 }

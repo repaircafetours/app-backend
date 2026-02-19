@@ -20,15 +20,15 @@ class VolunteerController extends Controller
      */
     public function store(Request $request)
     {
-        //return Volunteer::create($request->all());
+        Volunteer::create($request->all());;
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Volunteer $volunteer)
+    public function show(int $volunteer_id)
     {
-        //
+        return Volunteer::find($volunteer_id);
     }
 
     /**
@@ -45,28 +45,5 @@ class VolunteerController extends Controller
     public function destroy(Volunteer $volunteer)
     {
         //
-    }
-}
-
-namespace App\Http\Controllers;
-
-use App\Models\Volunteer;
-use Illuminate\Http\Request;
-
-class VolunteerController extends Controller
-{
-    public function index()
-    {
-        return Volunteer::all();
-    }
-
-    public function store(Request $request)
-    {
-        Volunteer::create($request->all());
-    }
-
-    public function show(int $volunteer_id)
-    {
-        return Volunteer::find($volunteer_id);
     }
 }
