@@ -13,7 +13,7 @@ RUN php ./composer.phar install
 ARG PORT=8000
 ENV PORT=${PORT}
 
-CMD php artisan serve --port ${PORT} --host 0.0.0.0&
+CMD php artisan serve --port ${PORT} --host 0.0.0.0
 
 EXPOSE ${PORT}
 
