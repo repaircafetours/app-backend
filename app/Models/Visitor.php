@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\LoggedModel;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use WendellAdriel\Lift\Lift;
@@ -10,6 +11,9 @@ use App\Traits\HasSchemalessAttributes;
 use WendellAdriel\Lift\Attributes\Cast;
 use WendellAdriel\Lift\Attributes\Relations\HasManyThrough;
 use WendellAdriel\Lift\Attributes\Rules;
+
+use Spatie\SchemalessAttributes\Casts\SchemalessAttributes as SchemalessAttributesCast;
+use Spatie\SchemalessAttributes\SchemalessAttributes;
 
 #[HasMany(Item::class)]
 #[HasManyThrough(Event::class, Item::class)]
@@ -20,7 +24,10 @@ use WendellAdriel\Lift\Attributes\Rules;
 class Visitor extends Model
 {
 
-    use HasSchemalessAttributes, Lift;
+    use HasSchemalessAttributes, Lift, LoggedModel;
+
+    public $timestamps = false;
+
     public string $email;
 
     public string $title;
@@ -30,11 +37,12 @@ class Visitor extends Model
     public string $surname;
     public string $zip_code;
     public string $city;
-    public string $phone_number;
-    public string $source;
+    public ?string $phone_number;
+    public ?string $source;
 
     #[Cast("bool")]
     public bool $notification;
-
-    public array $extra_attributes = [];
+    
+    #[Cast(SchemalessAttributesCast::class)]
+    public SchemalessAttributes $extra_attributes;
 }
