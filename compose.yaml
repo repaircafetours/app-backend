@@ -21,9 +21,14 @@ services:
       MARIADB_DATABASE: app_backend
       MARIADB_USER: app_backend
       MARIADB_PASSWORD: password
+    volumes:
+      - db_data:/var/lib/mysql
     networks:
       backend:
         ipv4_address: 172.16.0.200
+
+volumes:
+  db_data:
 
 networks:
   backend:
